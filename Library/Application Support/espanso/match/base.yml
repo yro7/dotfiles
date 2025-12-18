@@ -1,0 +1,344 @@
+matches:
+  # Lettres grecques
+  - trigger: "/alp"
+    replace: "α"
+  - trigger: "/bet"
+    replace: "β"
+  - trigger: "/gam"
+    replace: "γ"
+  - trigger: "/del"
+    replace: "δ"
+  - trigger: "/eps"
+    replace: "ε"
+  - trigger: "/zet"
+    replace: "ζ"
+  - trigger: "/eta"
+    replace: "η"
+  - trigger: "/the"
+    replace: "θ"
+  - trigger: "/iot"
+    replace: "ι"
+  - trigger: "/kap"
+    replace: "κ"
+  - trigger: "/lam"
+    replace: "λ"
+  - trigger: "/mu"
+    replace: "μ"
+  - trigger: "/nu"
+    replace: "ν"
+  - trigger: "/xi"
+    replace: "ξ"
+  - trigger: "/omi"
+    replace: "ο"
+  - trigger: "/pi"
+    replace: "π"
+  - trigger: "/rho"
+    replace: "ρ"
+  - trigger: "/sig"
+    replace: "σ"
+  - trigger: "/tau"
+    replace: "τ"
+  - trigger: "/ups"
+    replace: "υ"
+  - trigger: "/phi"
+    replace: "φ"
+  - trigger: "/chi"
+    replace: "χ"
+  - trigger: "/psi"
+    replace: "ψ"
+  - trigger: "/ome"
+    replace: "ω"
+  - trigger: "/k2"
+    replace: "χ²"
+
+  - trigger: "/grad"
+    replace: "∇"
+
+
+  # Lettres grecques majuscules
+  - trigger: "/ALP"
+    replace: "Α"
+  - trigger: "/BET"
+    replace: "Β"
+  - trigger: "/GAM"
+    replace: "Γ"
+  - trigger: "/DEL"
+    replace: "Δ"
+  - trigger: "/EPS"
+    replace: "Ε"
+  - trigger: "/ZET"
+    replace: "Ζ"
+  - trigger: "/ETA"
+    replace: "Η"
+  - trigger: "/THE"
+    replace: "Θ"
+  - trigger: "/IOT"
+    replace: "Ι"
+  - trigger: "/KAP"
+    replace: "Κ"
+  - trigger: "/LAM"
+    replace: "Λ"
+  - trigger: "/MU"
+    replace: "Μ"
+  - trigger: "/NU"
+    replace: "Ν"
+  - trigger: "/XI"
+    replace: "Ξ"
+  - trigger: "/OMI"
+    replace: "Ο"
+  - trigger: "/PI"
+    replace: "Π"
+  - trigger: "/RHO"
+    replace: "Ρ"
+  - trigger: "/SIG"
+    replace: "Σ"
+  - trigger: "/TAU"
+    replace: "Τ"
+  - trigger: "/UPS"
+    replace: "Υ"
+  - trigger: "/PHI"
+    replace: "Φ"
+  - trigger: "/CHI"
+    replace: "Χ"
+  - trigger: "/PSI"
+    replace: "Ψ"
+  - trigger: "/OME"
+    replace: "Ω"
+
+
+
+
+
+  # Symboles mathématiques
+  - trigger: "/inf"
+    replace: "∞"
+  - trigger: "/neq"
+    replace: "≠"
+  - trigger: "/geq"
+    replace: "≥"
+  - trigger: "/leq"
+    replace: "≤"
+  - trigger: "/sqrt"
+    replace: "√"
+  - trigger: "/sum"
+    replace: "$\\sum{}$"
+  - trigger: "/int"
+    replace: "$\\int{}$ "
+  - trigger: "/pm"
+    replace: "±"
+  - trigger: "/times"
+    replace: "×"
+  - trigger: "/div"
+    replace: "÷"
+  - trigger: "/eq"
+    replace: "↔"
+  - trigger: "~="
+    replace: "≈"
+  - trigger: "/imp"
+    replace: "⟶"
+  - trigger: "->"
+    replace: "⟶"
+
+
+  - trigger: "normexyn"
+    replace: "‖(xₙ, yₙ)‖"
+
+  - trigger: "normexy"
+    replace: "‖(x, y)‖"
+
+  - trigger: "/norme"
+    replace: "‖‖"
+
+  - trigger: "/xn"
+    replace: "xₙ"
+
+  - trigger: "/yn"
+    replace: "yₙ"
+
+
+  # Logique
+  - trigger: "/or "
+    replace: "∨ "
+  - trigger: "/and "
+    replace: "∧ "
+
+  - trigger: "/ou "
+    replace: "∨ "
+  - trigger: "/et "
+    replace: "∧ "
+
+  - trigger: "tinf"
+    replace: "⟶ ∞"
+  - trigger: "/and "
+    replace: "∧ "
+
+  - trigger: "/inn "
+    replace: "∈"
+  - trigger: "/nin "
+    replace: "∉ "
+
+    
+  - trigger: "/qql "
+    replace: "∀ "
+  - trigger: "/ilya "
+    replace: "∃ "
+
+  - trigger: "/scal"
+    replace: "⟨⟩"
+
+
+  - trigger: "+med"
+    replace: "🔼"
+
+  - trigger: "+high"
+    replace: "⏫"
+
+  - trigger: "+hh"
+    replace: "🔺"
+
+  - trigger: "+lwo"
+    replace: "🔽"
+
+  - trigger: "+ll"
+    replace: "⏬"
+
+  - trigger: "/a/"
+    replace: "⚠️ "
+
+
+
+
+  - trigger: "+tdy"
+    replace: "{{date}}"
+    vars:
+      - name: date
+        type: shell
+        params:
+          cmd: "date '+%Y-%m-%d'"
+
+  - trigger: "+mon"
+    replace: "{{date}}"
+    vars:
+      - name: date
+        type: shell
+        params:
+          cmd: "date -v+Mon '+%Y-%m-%d'"
+
+  - trigger: "+tue"
+    replace: "{{date}}"
+    vars:
+      - name: date
+        type: shell
+        params:
+          cmd: "date -v+Tue '+%Y-%m-%d'"
+
+  - trigger: "+wed"
+    replace: "{{date}}"
+    vars:
+      - name: date
+        type: shell
+        params:
+          cmd: "date -v+Wed '+%Y-%m-%d'"
+
+  - trigger: "+thu"
+    replace: "{{date}}"
+    vars:
+      - name: date
+        type: shell
+        params:
+          cmd: "date -v+Thu '+%Y-%m-%d'"
+
+  - trigger: "+fri"
+    replace: "{{date}}"
+    vars:
+      - name: date
+        type: shell
+        params:
+          cmd: "date -v+Fri '+%Y-%m-%d'"
+
+  - trigger: "+sat"
+    replace: "{{date}}"
+    vars:
+      - name: date
+        type: shell
+        params:
+          cmd: "date -v+Sat '+%Y-%m-%d'"
+
+  - trigger: "+sun"
+    replace: "{{date}}"
+    vars:
+      - name: date
+        type: shell
+        params:
+          cmd: "date -v+Sun '+%Y-%m-%d'"
+
+  - trigger: "+tmr"
+    replace: "{{date}}"
+    vars:
+      - name: date
+        type: shell
+        params:
+          cmd: "date -v+1d '+%Y-%m-%d'"
+
+  - trigger: "+yst"
+    replace: "{{date}}"
+    vars:
+      - name: date
+        type: shell
+        params:
+          cmd: "date -v-1d '+%Y-%m-%d'"
+
+
+  # Exposants 0-9 + n
+  - trigger: "/0"
+    replace: "⁰"
+  - trigger: "/1"
+    replace: "¹"
+  - trigger: "/2"
+    replace: "²"
+  - trigger: "/3"
+    replace: "³"
+  - trigger: "/4"
+    replace: "⁴"
+  - trigger: "/5"
+    replace: "⁵"
+  - trigger: "/6"
+    replace: "⁶"
+  - trigger: "/7"
+    replace: "⁷"
+  - trigger: "/8"
+    replace: "⁸"
+  - trigger: "/9"
+    replace: "⁹"
+  - trigger: "/n"
+    replace: "ⁿ"
+  - trigger: "/)"
+    replace: "⁻¹"
+  - trigger: "/T"
+    replace: "ᵀ"
+
+  # Indices 0-9 + n
+  - trigger: "_0"
+    replace: "₀"
+  - trigger: "_1"
+    replace: "₁"
+  - trigger: "_2"
+    replace: "₂"
+  - trigger: "_3"
+    replace: "₃"
+  - trigger: "_4"
+    replace: "₄"
+  - trigger: "_5"
+    replace: "₅"
+  - trigger: "_6"
+    replace: "₆"
+  - trigger: "_7"
+    replace: "₇"
+  - trigger: "_8"
+    replace: "₈"
+  - trigger: "_9"
+    replace: "₉"
+  - trigger: "_n"
+    replace: "ₙ"
+  - trigger: "_i"
+    replace: "ᵢ"
