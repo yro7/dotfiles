@@ -1,0 +1,62 @@
+
+# Close window
+capslock + shift - q : yabai -m window close
+
+# Navigation
+alt - h : yabai -m window --focus west
+alt - j : yabai -m window --focus south
+alt - k : yabai -m window --focus north
+alt - l : yabai -m window --focus east
+
+# Moving windows
+shift + alt - h : yabai -m window --warp west
+shift + alt - j : yabai -m window --warp south
+shift + alt - k : yabai -m window --warp north
+shift + alt - l : yabai -m window --warp east
+
+
+# Resize windows
+lctrl + alt - h : yabai -m window --resize left:-50:0; \
+                  yabai -m window --resize right:-50:0
+lctrl + alt - j : yabai -m window --resize bottom:0:50; \
+                  yabai -m window --resize top:0:50
+lctrl + alt - k : yabai -m window --resize top:0:-50; \
+                  yabai -m window --resize bottom:0:-50
+lctrl + alt - l : yabai -m window --resize right:50:0; \
+                  yabai -m window --resize left:50:0
+
+# Restart Yabai
+shift + lctrl + alt - r : \
+    /usr/bin/env osascript <<< \
+        "display notification \"Restarting Yabai\" with title \"Yabai\""; \
+    launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
+
+# Make window native fullscreen
+alt - f         : yabai -m window --toggle zoom-fullscreen
+shift + alt - f : yabai -m window --toggle native-fullscreen
+
+# hyper key defined as : shift + ctrl + alt through Karabiner
+
+# Hyper + cmd +  F > open firefox
+shift + ctrl + alt  - f : open -a "Firefox"
+# Debug : test de la combinaison
+shift + ctrl + alt + cmd - f : echo "!!! LE RACCOURCI FONCTIONNE !!!"
+
+# 1. Juste Hyper + F (Sans Cmd)
+ctrl + alt + shift - f : echo "Hyper F"
+
+# 2. Hyper + Cmd + F (Générique)
+ctrl + alt + shift + cmd - f : echo "Hyper Command F"
+
+# 3. Hyper + Cmd + F (Spécifique GAUCHE - Souvent le fix pour Karabiner)
+lctrl + lalt + lshift + cmd - f : echo "Gauche Spécifique"
+
+# 4. Hyper + Cmd + F + FN (Parfois Karabiner ajoute une touche Fn invisible)
+fn + ctrl + alt + shift + cmd - f : echo "Fonction Détectée"
+
+# Utilisation du code hexadécimal 0x03 pour "F"
+shift + ctrl + alt + cmd - 0x03 : open -a "Firefox"
+
+
+
+

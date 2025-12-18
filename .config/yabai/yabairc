@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+
+#############
+#	MOUSE OPTIONS
+#############
+# Activer focus_follows_mouse en mode autofocus si désactivé,
+# sinon le couper.
+yabai -m config mouse_follows_focus on
+yabai -m config focus_follows_mouse autoraise on
+
+# Change windows size w/ mouse
+yabai -m config mouse_modifier alt
+yabai -m config mouse_action1 resize
+yabai -m config mouse_action2 move
+
+
+##################
+#	SPLIT OPTIONS
+##############
+yabai -m config split_type auto
+yabai -m config layout bsp
+yabai -m config split_ratio 0.5     # proportion des splits
+yabai -m config auto_balance on     # rééquilibrer les fenêtres automatiquement
+
+yabai -m config top_padding 6
+yabai -m config bottom_padding 2
+yabai -m config left_padding 2
+yabai -m config right_padding 2
+yabai -m config window_gap 6
+
+yabai -m config window_border on
+yabai -m config window_border_width 8
+yabai -m config active_window_border_color 0xff775759
+yabai -m config active_window_border_width 15
+yabai -m config normal_window_border_color 0xff555555
+
+# Règle pour garder les fenêtres "System Settings" en flottant
+yabai -m rule --add app="Réglages Système" manage=off
+yabai -m rule --add app="Karabiner-Elements" manage=off
+yabai -m rule --add app="Raccourcis" manage=off
+yabai -m rule --add app="Safari" manage=off
+yabai -m rule --add app="Réglages Système" manage=off
+
+yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+sudo yabai --load-sa
+
+printf "yabai: configuration minimale chargée...\n"
