@@ -16,6 +16,7 @@ alias skconf='micro ~/.skhdrc'
 alias espansoconf='micro "~/Library/Application Support/espanso/match/base.yml"'
 alias borderconf='micro ~/.config/borders/bordersrc'
 alias rconf='micro ~/.zshrc'
+alias cdsketch='cd ~/.config/sketchybar/'
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 

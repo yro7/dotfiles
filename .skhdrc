@@ -1,19 +1,18 @@
-
 # hyper key defined as : shift + ctrl + alt through Karabiner
 
-
 ####################
-#	NAVIGATION			
+#    NAVIGATION    
 ####################
 
-# Between windows & displays
+#############
+#	WINDOW/DISPLAYS
+##############
 
 # Navigation entre fenêtres avec Shift + flèches
 #shift - left  : yabai -m window --focus west
 #shift - right : yabai -m window --focus east
 #shift - up    : yabai -m window --focus north
 #shift - down  : yabai -m window --focus south
-
 
 # Déplacer fenêtre avec Shift + Cmd + flèches
 shift + cmd - left  : yabai -m window --swap west
@@ -22,78 +21,114 @@ shift + cmd - up    : yabai -m window --swap north
 shift + cmd - down  : yabai -m window --swap south
 
 # Déplacer fenêtre au sein d'un workspace OU vers un autre display si échec
-shift + ctrl + alt + cmd - down : yabai -m window --swap south || (WIN_ID=$(yabai -m query --windows --window | jq -r '.id'); yabai -m window --display south; yabai -m display --focus south; yabai -m window --focus "$WIN_ID")
-shift + ctrl + alt + cmd - left  : yabai -m window --swap west || (WIN_ID=$(yabai -m query --windows --window | jq -r '.id'); yabai -m window --display west;  yabai -m display --focus west;  yabai -m window --focus "$WIN_ID")
-shift + ctrl + alt + cmd - right : yabai -m window --swap east || (WIN_ID=$(yabai -m query --windows --window | jq -r '.id'); yabai -m window --display east;  yabai -m display --focus east;  yabai -m window --focus "$WIN_ID")
-shift + ctrl + alt + cmd - up    : yabai -m window --swap north || (WIN_ID=$(yabai -m query --windows --window | jq -r '.id'); yabai -m window --display north; yabai -m display --focus north; yabai -m window --focus "$WIN_ID")
+shift + ctrl + alt + cmd - down : WIN_ID=$(yabai -m query --windows --window | jq -r '.id'); \
+                                  yabai -m window --swap south || \
+                                  (yabai -m window --display south; \
+                                   yabai -m display --focus south; \
+                                   yabai -m window --focus "$WIN_ID")
+
+shift + ctrl + alt + cmd - left  : WIN_ID=$(yabai -m query --windows --window | jq -r '.id'); \
+                                   yabai -m window --swap west || \
+                                   (yabai -m window --display west; \
+                                    yabai -m display --focus west; \
+                                    yabai -m window --focus "$WIN_ID")
+
+shift + ctrl + alt + cmd - right : WIN_ID=$(yabai -m query --windows --window | jq -r '.id'); \
+                                   yabai -m window --swap east || \
+                                   (yabai -m window --display east; \
+                                    yabai -m display --focus east; \
+                                    yabai -m window --focus "$WIN_ID")
+
+shift + ctrl + alt + cmd - up    : WIN_ID=$(yabai -m query --windows --window | jq -r '.id'); \
+                                   yabai -m window --swap north || \
+                                   (yabai -m window --display north; \
+                                    yabai -m display --focus north; \
+                                    yabai -m window --focus "$WIN_ID")
 
 # Navigation entre fenêtres OU entre display si échec
-shift + ctrl + alt - up  : yabai -m window --focus north || (yabai -m display --focus north)
-shift + ctrl + alt - left  : yabai -m window --focus west || (yabai -m display --focus west)
-shift + ctrl + alt - right  : yabai -m window --focus east || (yabai -m display --focus east)
-shift + ctrl + alt - down  : yabai -m window --focus south || (yabai -m display --focus south)
-
-# Déplacer fenêtres entre spaces:
-# hypr + tab + arrow
-
-#fn - up: echo "HAAAA"
-
-f3 : yabai -m space --focus prev
-f4 : yabai -m space --focus next
+shift + ctrl + alt - up    : yabai -m window --focus north || yabai -m display --focus north
+shift + ctrl + alt - left  : yabai -m window --focus west || yabai -m display --focus west
+shift + ctrl + alt - right : yabai -m window --focus east || yabai -m display --focus east
+shift + ctrl + alt - down  : yabai -m window --focus south || yabai -m display --focus south
 
 
- 
+##############
+#	SPACES
+#############
+
+# Navigation entre spaces
+lctrl - left  : yabai -m space --focus prev
+lctrl - right : ~/.config/yabai/scripts/change_space.sh
 
 
+# Suppression de l'espace
+lctrl + lalt - down : SPACE_ID=$(yabai -m query --spaces --space | jq '.index'); \
+	echo "space id : $SPACE_ID"; \
+	yabai -m space --destroy; \
+	yabai -m space --focus $(($SPACE_ID-1))
 
+# Changer une fenêtre de space
 
+lctrl + cmd - right : ~/.config/yabai/scripts/move_window_from_space.sh #yabai -m window --space next
+lctrl + cmd - left : yabai -m window --space prev
+
+#############
+#    SKETCHYBAR CONTROL
+#############
+	
+f3 : sketchybar --trigger swap_menus_and_spaces
+
+f4 : STATUS=$(sketchybar --query bar | jq -r '.topmost'); \
+     if [ "$STATUS" = "on" ]; then \
+         sketchybar --bar topmost=off; \
+     else \
+         sketchybar --bar topmost=on; \
+     fi
+
+f5 : echo "free"
+f6 : echo "free"
+
+###### 
+#   MISC
+#####
 
 
 shift + ctrl + alt + cmd - d : yabai -m space --balance
 shift + ctrl + alt + cmd - g : yabai -m space --rotate 90
 
 # Resize windows
-shift + alt  - left : yabai -m window --resize left:-50:0; \
-                  yabai -m window --resize right:-50:0
-shift + alt - down : yabai -m window --resize bottom:0:50; \
-                  yabai -m window --resize top:0:50
-shift + alt - up : yabai -m window --resize top:0:-50; \
-                  yabai -m window --resize bottom:0:-50
+shift + alt - left  : yabai -m window --resize left:-50:0; \
+                      yabai -m window --resize right:-50:0
+
+shift + alt - down  : yabai -m window --resize bottom:0:50; \
+                      yabai -m window --resize top:0:50
+
+shift + alt - up    : yabai -m window --resize top:0:-50; \
+                      yabai -m window --resize bottom:0:-50
+
 shift + alt - right : yabai -m window --resize right:50:0; \
-                  yabai -m window --resize left:50:0
+                      yabai -m window --resize left:50:0
 
 # Float / Unfloat window
-shift + alt - space : \
-    yabai -m window --toggle float; \
-    yabai -m window --toggle border
+shift + alt - space : yabai -m window --toggle float; \
+                      yabai -m window --toggle border
 
 # Restart Yabai
-shift + lctrl + alt - r : \
-    /usr/bin/env osascript <<< \
-        "display notification \"Restarting Yabai\" with title \"Yabai\""; \
-    launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
+shift + lctrl + alt - r : /usr/bin/env osascript -e "display notification \"Restarting Yabai\" with title \"Yabai\""; \
+                          launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
 
 # Make window native fullscreen
 alt - f         : yabai -m window --toggle zoom-fullscreen
 shift + alt - f : yabai -m window --toggle native-fullscreen
 
-
 ##########################
-#	OPEN APP SHORTCUT
+#    OPEN APP SHORTCUT
 ##########################
 
-# hyper + cmd +  LETTER - open applications  
-shift + ctrl + alt + cmd  - f : open -a "Firefox"
-shift + ctrl + alt + cmd  - t : open -a "Terminal"
-shift + ctrl + alt + cmd  - o : open -a "Obsidian"
-shift + ctrl + alt + cmd  - v : open -a "Visual Studio Code"
-shift + ctrl + alt + cmd  - c : open -a "Microsoft Outlook"
-shift + ctrl + alt + cmd  - a : open -a "Microsoft Teams"
-
-
-
-
-
-
-
-																													
+# hyper + cmd + LETTER - open applications
+shift + ctrl + alt + cmd - f : open -a "Firefox"
+shift + ctrl + alt + cmd - t : open -a "Terminal"
+shift + ctrl + alt + cmd - o : open -a "Obsidian"
+shift + ctrl + alt + cmd - v : open -a "Visual Studio Code"
+shift + ctrl + alt + cmd - c : open -a "Microsoft Outlook"
+shift + ctrl + alt + cmd - a : open -a "Microsoft Teams"
